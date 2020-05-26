@@ -37,8 +37,8 @@ Mapping syntax is based on [Flogo documented syntax](https://tibcosoftware.githu
 
 ```json
 {
-  "id": "codelity-objectmapper-activity",
-  "name": "Codelity Object Mapper Activity",
+  "id": "flogo-objectmapper-activity",
+  "name": "Codelity Flogo Object Mapper Activity",
   "ref": "github.com/codelity-co/flogo-objectmapper-activity",
   "settings": {},
   "input": {
