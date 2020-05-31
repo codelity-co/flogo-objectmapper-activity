@@ -56,21 +56,22 @@ func (a *Activity) Eval(ctx activity.Context) (bool, error) {
 		return true, err
 	}
 
-	var objectMapper mapper.Mapper
 	mapperFactory := mapper.NewFactory(resolver)
-	objectMapper, err = mapperFactory.NewMapper(input.InVar)
+
+	var inVarMapper mapper.Mapper
+	inVarMapper, err = mapperFactory.NewMapper(input.InVar)
 	if err != nil {
 		return true, err
 	}
 
-	var outValue interface{}
-	outValue, err = objectMapper.Apply(ctx.ActivityHost().Scope())
+	var inVarValue interface{}
+	inVarValue, err = inVarMapper.Apply(ctx.ActivityHost().Scope())
 	if err != nil {
 		return true, err
 	}
-	ctx.Logger().Debugf("outValue: %v", outValue)
+	ctx.Logger().Debugf("outValue: %v", inVarValue)
 
-	output := &Output{OutVar: outValue}
+	output := &Output{OutVar: inVarValue}
 	ctx.Logger().Debugf("Output: %v", output)
 
 	err = ctx.SetOutputObject(output)
